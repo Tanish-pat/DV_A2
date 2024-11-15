@@ -1,0 +1,125 @@
+let damage_per_district = {};
+let buildings_per_district = {};
+
+async function fetch_data() {
+    console.log("Fetching data...");
+    try {
+        const response = await fetch('csv_building_structure.csv');
+        const csvData = await response.text();
+
+        Papa.parse(csvData, {
+            header: true,
+            skipEmptyLines: true,
+            step: function (row) {
+                const district_id = row.data['district_id'];
+                const damage_level = row.data['condition_post_eq'];
+
+                if (district_id) {
+                    buildings_per_district[district_id] = (buildings_per_district[district_id] || 0) + 1;
+
+                    if (!damage_per_district[district_id]) {
+                        damage_per_district[district_id] = {};
+                    }
+
+                    damage_per_district[district_id][damage_level || 'Missing'] =
+                        (damage_per_district[district_id][damage_level || 'Missing'] || 0) + 1;
+                }
+            },
+            complete: function () {
+                console.log("Data loading complete");
+                preparePlotData();  // Create the plot after data is loaded
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching or parsing CSV:", error);
+    }
+}
+
+let currentColorScheme = 'Rainbow';
+
+const useObject = damage_per_district;
+
+function preparePlotData() {
+    // Extract districts
+    const districts = Object.keys(useObject).map(id => parseInt(id));
+
+    // Extract unique damage types (we can just use the keys from any one district, as all districts will have the same damage types)
+    const damageTypes = Object.keys(useObject[districts[0]]); // Use the first district's keys to get the damage types
+
+    // Build the dimensions array
+    const dimensions = [
+        { label: 'District ID', values: districts },
+        ...damageTypes.map((damageType, index) => ({
+            label: damageType,
+            values: districts.map(id => useObject[id][damageType] || 0),
+            position: index % 2 === 0 ? 0.1 : -0.1
+        }))
+    ];
+
+    console.log(dimensions);
+    console.log(damage_per_district);
+
+    const trace = {
+        type: 'parcoords',
+        line: {
+            color: districts,
+            colorscale: currentColorScheme,
+            showscale: true
+        },
+        dimensions: dimensions.map((dim, index) => {
+            return {
+                label: dim.label,
+                values: dim.values,
+                // Set offset for each dimension for alternating positions
+                tickvals: [index],
+                ticktext: [dim.label],
+                tickangle: dim.position * 90  // Rotate the text based on position
+            };
+        })
+    };
+
+    const layout = {
+        title: {
+            text: 'Parallel Coordinate Plot For Condition Post Earthquake',
+            font: { size: 48 }  // Increase the title font size here
+        },
+        width: 1750,
+        height: 800,
+        paper_bgcolor: 'rgb(243, 243, 243)',
+        plot_bgcolor: 'rgb(243, 243, 243)',
+        // Increase dimension label size
+        font: {
+            size: 20  // Set default font size for all text in the plot
+        },
+        // Apply custom font sizes to dimension labels
+        xaxis: {
+            title: {
+                font: {
+                    size: 24  // Set the font size for axis titles
+                }
+            }
+        },
+        yaxis: {
+            title: {
+                font: {
+                    size: 24  // Set the font size for y-axis titles
+                }
+            }
+        }
+    };
+
+    Plotly.newPlot('plot', [trace], layout);
+}
+
+function updateColorScheme(selectedScheme) {
+    currentColorScheme = selectedScheme;
+    preparePlotData();
+}
+
+function resetPlot() {
+    preparePlotData();
+}
+
+document.addEventListener('DOMContentLoaded', preparePlotData);
+
+window.onload = fetch_data;

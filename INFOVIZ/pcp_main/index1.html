@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parallel Coordinate Plot For Condition Post Earthquake</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="plot"></div>
+    <div id="controls">
+        <label for="colorSchemeSelector">Color Scheme:</label>
+        <select id="colorSchemeSelector" onchange="updateColorScheme(this.value)">
+            <option value="Rainbow">Rainbow</option>
+            <option value="Blues">Blues</option>
+            <option value="Greens">Greens</option>
+            <option value="Reds">Reds</option>
+            <option value="Viridis">Viridis</option>
+        </select>
+        <button onclick="resetPlot()">Reset Plot</button>
+    </div>
+
+    <script src="pcp1.js"></script>
+</body>
+</html>

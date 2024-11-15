@@ -1,0 +1,113 @@
+12 : {Moderate-Heavy: 24002, Severe-Extreme: 10264, Insignificant/light: 21534, None: 12776, Missing: 10128}
+20 : {Moderate-Heavy: 44618, Severe-Extreme: 15700, Insignificant/light: 38228, None: 23322, Missing: 15632}
+21 : {Moderate-Heavy: 49274, Severe-Extreme: 22642, Insignificant/light: 16096, None: 7858, Missing: 21376}
+22 : {Moderate-Heavy: 21930, Severe-Extreme: 20014, Insignificant/light: 6952, None: 4242, Missing: 68140}
+23 : {Moderate-Heavy: 15794, Severe-Extreme: 16148, Insignificant/light: 4944, None: 1938, Missing: 138658}
+24 : {Moderate-Heavy: 69672, Severe-Extreme: 36310, Insignificant/light: 28118, None: 16996, Missing: 44942}
+28 : {Moderate-Heavy: 33876, Severe-Extreme: 31914, Insignificant/light: 8504, None: 4840, Missing: 75162}
+29 : {Moderate-Heavy: 3512, Severe-Extreme: 3374, Insignificant/light: 938, None: 330, Missing: 17134}
+30 : {Moderate-Heavy: 47574, Severe-Extreme: 32588, Insignificant/light: 19506, None: 11798, Missing: 66778}
+31 : {Moderate-Heavy: 49118, Severe-Extreme: 15060, Insignificant/light: 52774, None: 50566, Missing: 14470}
+36 : {Moderate-Heavy: 51514, Severe-Extreme: 27742, Insignificant/light: 17634, None: 8952, Missing: 50306}
+
+
+12 : {Insignificant/light-(<1/3): 7582, Insignificant/light-(1/3-2/3): 2601, Insignificant/light-(>2/3): 1547}
+20 : {Insignificant/light-(<1/3): 10679, Insignificant/light-(1/3-2/3): 6083, Insignificant/light-(>2/3): 3431}
+21 : {Insignificant/light-(<1/3): 7607, Insignificant/light-(1/3-2/3): 3782, Insignificant/light-(>2/3): 3979}
+22 : {Insignificant/light-(>2/3): 2806, Insignificant/light-(1/3-2/3): 2536, Insignificant/light-(<1/3): 6086}
+23 : {Insignificant/light-(1/3-2/3): 1589, Insignificant/light-(>2/3): 2000, Insignificant/light-(<1/3): 3434}
+24 : {Insignificant/light-(>2/3): 7149, Insignificant/light-(<1/3): 15106, Insignificant/light-(1/3-2/3): 9385}
+28 : {Insignificant/light-(1/3-2/3): 2853, Insignificant/light-(<1/3): 6763, Insignificant/light-(>2/3): 3359}
+29 : {Insignificant/light-(1/3-2/3): 392, Insignificant/light-(<1/3): 814, Insignificant/light-(>2/3): 303}
+30 : {Insignificant/light-(<1/3): 10108, Insignificant/light-(>2/3): 4935, Insignificant/light-(1/3-2/3): 4582}
+31 : {Insignificant/light-(<1/3): 10642, Insignificant/light-(1/3-2/3): 6016, Insignificant/light-(>2/3): 4798}
+36 : {Insignificant/light-(>2/3): 5060, Insignificant/light-(<1/3): 10552, Insignificant/light-(1/3-2/3): 6343}
+
+12 : {Moderate-Heavy-(<1/3): 2478, Moderate-Heavy-(>2/3): 1842}
+20 : {Moderate-Heavy-(>2/3): 6329, Moderate-Heavy-(<1/3): 6161}
+21 : {Moderate-Heavy-(<1/3): 6150, Moderate-Heavy-(>2/3): 6166}
+22 : {Moderate-Heavy-(>2/3): 3027, Moderate-Heavy-(<1/3): 3578}
+23 : {Moderate-Heavy-(<1/3): 1625, Moderate-Heavy-(>2/3): 2899}
+24 : {Moderate-Heavy-(<1/3): 8328, Moderate-Heavy-(>2/3): 8191}
+28 : {Moderate-Heavy-(>2/3): 6687, Moderate-Heavy-(<1/3): 5063}
+29 : {Moderate-Heavy-(>2/3): 541, Moderate-Heavy-(<1/3): 338}
+30 : {Moderate-Heavy-(<1/3): 6053, Moderate-Heavy-(>2/3): 6160}
+31 : {Moderate-Heavy-(>2/3): 5061, Moderate-Heavy-(<1/3): 5021}
+36 : {Moderate-Heavy-(>2/3): 6340, Moderate-Heavy-(<1/3): 5568}
+
+12 : {Severe-Extreme-(>2/3): 1196, None: 18113, Severe-Extreme-(<1/3): 1243}
+20 : {None: 23405, Severe-Extreme-(<1/3): 2847, Severe-Extreme-(>2/3): 2686}
+21 : {None: 19143, Severe-Extreme-(<1/3): 3168, Severe-Extreme-(>2/3): 2769}
+22 : {Severe-Extreme-(>2/3): 1718, Severe-Extreme-(<1/3): 1594, None: 8342}
+23 : {Severe-Extreme-(>2/3): 3143, Severe-Extreme-(<1/3): 1093, None: 4819}
+24 : {Severe-Extreme-(<1/3): 3713, Severe-Extreme-(>2/3): 3807, None: 27491}
+28 : {Severe-Extreme-(<1/3): 2801, Severe-Extreme-(>2/3): 5496, None: 9702}
+29 : {Severe-Extreme-(>2/3): 733, Severe-Extreme-(<1/3): 203, None: 1046}
+30 : {None: 22100, Severe-Extreme-(<1/3): 3068, Severe-Extreme-(>2/3): 3574}
+31 : {None: 48497, Severe-Extreme-(<1/3): 1929, Severe-Extreme-(>2/3): 1464}
+36 : {None: 18255, Severe-Extreme-(<1/3): 2783, Severe-Extreme-(>2/3): 2603}
+
+
+
+{
+    "12": {"Damaged-Used in risk": 9088,"Damaged-Repaired and used": 11022,"Damaged-Rubble unclear": 2522,"Not damaged": 4456,"Damaged-Not used": 9722,"Damaged-Rubble clear": 1463,"Damaged-Rubble Clear-New building built": 1074,"Covered by landslide": 5},
+    "20": {"Damaged-Rubble unclear": 2673,"Damaged-Rubble Clear-New building built": 2516,"Damaged-Rubble clear": 2618,"Damaged-Repaired and used": 24432,"Damaged-Used in risk": 17916,"Not damaged": 9528,"Damaged-Not used": 9059,"Covered by landslide": 8},
+    "21": {"Damaged-Rubble clear": 2807,"Damaged-Rubble unclear": 6222,"Damaged-Repaired and used": 5711,"Damaged-Rubble Clear-New building built": 1648,"Damaged-Not used": 30441,"Damaged-Used in risk": 10402,"Not damaged": 1390,"Covered by landslide": 2},
+    "22": {"Damaged-Rubble unclear": 17798,"Damaged-Rubble clear": 13620,"Damaged-Rubble Clear-New building built": 2641,"Damaged-Not used": 20574,"Damaged-Used in risk": 3075,"Damaged-Repaired and used": 1894,"Not damaged": 1026,"Covered by landslide": 11},
+    "23": {"Damaged-Not used": 12244,"Damaged-Rubble unclear": 30254,"Damaged-Repaired and used": 4152,"Damaged-Rubble Clear-New building built": 5233,"Damaged-Rubble clear": 33636,"Not damaged": 834,"Damaged-Used in risk": 2182,"Covered by landslide": 206},
+    "24": {"Damaged-Not used": 37372,"Damaged-Rubble unclear": 12283,"Damaged-Used in risk": 18974,"Not damaged": 6716,"Damaged-Rubble clear": 8282,"Damaged-Repaired and used": 12486,"Damaged-Rubble Clear-New building built": 1895,"Covered by landslide": 11},
+    "28": {"Damaged-Rubble unclear": 20385,"Damaged-Not used": 23590,"Damaged-Used in risk": 6028,"Damaged-Repaired and used": 8138,"Damaged-Rubble clear": 13299,"Not damaged": 1811,"Damaged-Rubble Clear-New building built": 3882,"Covered by landslide": 15},
+    "29": {"Damaged-Used in risk": 657,"Damaged-Repaired and used": 1462,"Damaged-Not used": 1784,"Damaged-Rubble clear": 3287,"Damaged-Rubble unclear": 3501,"Not damaged": 174,"Damaged-Rubble Clear-New building built": 1703,"Covered by landslide": 76},
+    "30": {"Damaged-Not used": 28414,"Damaged-Repaired and used": 10225,"Damaged-Rubble unclear": 16339,"Damaged-Used in risk": 13007,"Not damaged": 4087,"Damaged-Rubble clear": 12511,"Damaged-Rubble Clear-New building built": 4527,"Covered by landslide": 12},
+    "31": {"Damaged-Used in risk": 26833,"Damaged-Not used": 8595,"Damaged-Rubble unclear": 2948,"Damaged-Repaired and used": 20866,"Damaged-Rubble clear": 2259,"Damaged-Rubble Clear-New building built": 2025,"Not damaged": 27465,"Covered by landslide": 3},
+    "36": {"Damaged-Rubble unclear": 10725,"Damaged-Rubble clear": 8409,"Damaged-Rubble Clear-New building built": 5986,"Damaged-Not used": 26173,"Damaged-Used in risk": 15687,"Damaged-Repaired and used": 7409,"Not damaged": 3652,"Covered by landslide": 33 }
+}
+
+
+{
+    "12": {"Private": 39264,"Other": 65,"Institutional": 15,"Public": 8},
+    "20": {"Private": 60241,"Other": 1025,"Public": 7379,"Institutional": 105},
+    "21": {"Private": 57643,"Public": 390,"Institutional": 468,"Other": 122},
+    "22": {"Private": 58491,"Public": 299,"Institutional": 1677,"Other": 172},
+    "23": {"Private": 85479,"Institutional": 1894,"Other": 706,"Public": 662},
+    "24": {"Private": 96233,"Public": 550,"Other": 189,"Institutional": 1047},
+    "28": {"Private": 75717,"Public": 638,"Other": 234,"Institutional": 559},
+    "29": {"Private": 11971,"Other": 94,"Public": 102,"Institutional": 477},
+    "30": {"Private": 87415,"Institutional": 333,"Public": 1054,"Other": 320},
+    "31": {"Private": 83148,"Other": 428,"Institutional": 124,"Public": 7294},
+    "36": {"Private": 75785,"Institutional": 1124,"Public": 856,"Other": 309}
+}
+
+
+
+{
+    "12": {"None": 30845,"Insignificant/light": 2490,"Moderate-Heavy": 707,"Severe-Extreme": 246},
+    "20": {"None": 52024,"Severe-Extreme": 1135,"Insignificant/light": 5301,"Moderate-Heavy": 2474},
+    "21": {"None": 40774,"Moderate-Heavy": 2411,"Insignificant/light": 3839,"Severe-Extreme": 910},
+    "22": {"None": 20151,"Insignificant/light": 2902,"Severe-Extreme": 1959,"Moderate-Heavy": 1557},
+    "23": {"None": 13143,"Moderate-Heavy": 1933,"Insignificant/light": 2950,"Severe-Extreme": 1386},
+    "24": {"None": 54785,"Moderate-Heavy": 5731,"Severe-Extreme": 4763,"Insignificant/light": 10269},
+    "28": {"None": 27608,"Severe-Extreme": 2988,"Moderate-Heavy": 4238,"Insignificant/light": 4733},
+    "29": {"Severe-Extreme": 663,"Moderate-Heavy": 923,"Insignificant/light": 725,"None": 1766},
+    "30": {"None": 40899,"Insignificant/light": 7106,"Moderate-Heavy": 4694,"Severe-Extreme": 3034},
+    "31": {"None": 72260,"Insignificant/light": 6521,"Moderate-Heavy": 3305,"Severe-Extreme": 1673},
+    "36": {"None": 40960,"Insignificant/light": 6714,"Moderate-Heavy": 3589,"Severe-Extreme": 1658}
+}
+
+
+
+
+{
+    "12": {"Insignificant/light-(<1/3)": 7582,"Insignificant/light-(1/3-2/3)": 2601,"Insignificant/light-(>2/3)": 1547},
+    "20": {"Insignificant/light-(<1/3)": 10679,"Insignificant/light-(1/3-2/3)": 6083,"Insignificant/light-(>2/3)": 3431},
+    "21": {"Insignificant/light-(<1/3)": 7607,"Insignificant/light-(1/3-2/3)": 3782,"Insignificant/light-(>2/3)": 3979},
+    "22": {"Insignificant/light-(>2/3)": 2806,"Insignificant/light-(1/3-2/3)": 2536,"Insignificant/light-(<1/3)": 6086},
+    "23": {"Insignificant/light-(1/3-2/3)": 1589,"Insignificant/light-(>2/3)": 2000,"Insignificant/light-(<1/3)": 3434},
+    "24": {"Insignificant/light-(>2/3)": 7149,"Insignificant/light-(<1/3)": 15106,"Insignificant/light-(1/3-2/3)": 9385},
+    "28": {"Insignificant/light-(1/3-2/3)": 2853,"Insignificant/light-(<1/3)": 6763,"Insignificant/light-(>2/3)": 3359},
+    "29": {"Insignificant/light-(1/3-2/3)": 392,"Insignificant/light-(<1/3)": 814,"Insignificant/light-(>2/3)": 303},
+    "30": {"Insignificant/light-(<1/3)": 10108,"Insignificant/light-(>2/3)": 4935,"Insignificant/light-(1/3-2/3)": 4582},
+    "31": {"Insignificant/light-(<1/3)": 10642,"Insignificant/light-(1/3-2/3)": 6016,"Insignificant/light-(>2/3)": 4798},
+    "36": {"Insignificant/light-(>2/3)": 5060,"Insignificant/light-(<1/3)": 10552,"Insignificant/light-(1/3-2/3)": 6343 }
+}
+

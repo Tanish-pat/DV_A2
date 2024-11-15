@@ -1,0 +1,55 @@
+{
+    "12": 39352,
+    "20": 68750,
+    "21": 58623,
+    "22": 60639,
+    "23": 88741,
+    "24": 98019,
+    "28": 77148,
+    "29": 12644,
+    "30": 89122,
+    "31": 90994,
+    "36": 78074
+}
+
+{
+    "12": {"Moderate-Heavy": 12001,"Severe-Extreme": 5132,"Insignificant/light": 10767,"None": 6388},
+    "20": {"Moderate-Heavy": 22309,"Severe-Extreme": 7850,"Insignificant/light": 19114,"None": 11661},
+    "21": {"Moderate-Heavy": 24637,"Severe-Extreme": 11321,"Insignificant/light": 8048,"None": 3929},
+    "22": {"Moderate-Heavy": 10965,"Severe-Extreme": 10007,"Insignificant/light": 3476,"None": 2121},
+    "23": {"Moderate-Heavy": 7897,"Severe-Extreme": 8074,"Insignificant/light": 2472,"None": 969},
+    "24": {"Moderate-Heavy": 34836,"Severe-Extreme": 18155,"Insignificant/light": 14059,"None": 8498},
+    "28": {"Moderate-Heavy": 16938,"Severe-Extreme": 15957,"Insignificant/light": 4252,"None": 2420},
+    "29": {"Moderate-Heavy": 1756,"Severe-Extreme": 1687,"Insignificant/light": 469,"None": 165},
+    "30": {"Moderate-Heavy": 23787,"Severe-Extreme": 16294,"Insignificant/light": 9753,"None": 5899},
+    "31": {"Moderate-Heavy": 24559,"Severe-Extreme": 7530,"Insignificant/light": 26387,"None": 25283},
+    "36": {"Moderate-Heavy": 25757,"Severe-Extreme": 13871,"Insignificant/light": 8817,"None": 4476}
+}
+
+{
+    "12": {"Grade 1": 7961,"Grade 2": 8605,"Grade 3": 9220,"Grade 4": 7946,"Grade 5": 5620,"Missing": 0},
+    "20": {"Grade 1": 13087,"Grade 2": 14469,"Grade 3": 17085,"Grade 4": 15917,"Grade 5": 8191,"Missing": 1},
+    "21": {"Grade 1": 2116,"Grade 2": 7151,"Grade 3": 16945,"Grade 4": 20910,"Grade 5": 11490,"Missing": 11},
+    "22": {"Grade 1": 1353,"Grade 2": 2993,"Grade 3": 6520,"Grade 4": 14409,"Grade 5": 35364,"Missing": 0},
+    "23": {"Grade 1": 1233,"Grade 2": 2009,"Grade 3": 3271,"Grade 4": 10796,"Grade 5": 71432,"Missing": 0},
+    "24": {"Grade 1": 8330,"Grade 2": 11726,"Grade 3": 25130,"Grade 4": 28974,"Grade 5": 23859,"Missing": 0},
+    "28": {"Grade 1": 2615,"Grade 2": 2745,"Grade 3": 8209,"Grade 4": 23284,"Grade 5": 40295,"Missing": 0},
+    "29": {"Grade 1": 277,"Grade 2": 343,"Grade 3": 782,"Grade 4": 2064,"Grade 5": 9178,"Missing": 0},
+    "30": {"Grade 1": 4952,"Grade 2": 7526,"Grade 3": 15218,"Grade 4": 26080,"Grade 5": 35346,"Missing": 0},
+    "31": {"Grade 1": 32540,"Grade 2": 21135,"Grade 3": 18525,"Grade 4": 10928,"Grade 5": 7866,"Missing": 0},
+    "36": {"Grade 1": 4351,"Grade 2": 8555,"Grade 3": 15507,"Grade 4": 22536,"Grade 5": 27125,"Missing": 0}
+}
+
+{
+    "12": {"Major repair": 9048,"Reconstruction": 14598,"Minor repair": 10445,"No need": 5261,"Missing": 0},
+    "20": {"Major repair": 15814,"Reconstruction": 25233,"Minor repair": 17611,"No need": 10091,"Missing": 1},
+    "21": {"Major repair": 13748,"Reconstruction": 35879,"Minor repair": 7978,"No need": 1007,"Missing": 11},
+    "22": {"Major repair": 6660,"Reconstruction": 49457,"Minor repair": 3693,"No need": 829,"Missing": 0},
+    "23": {"Major repair": 3506,"Reconstruction": 81991,"Minor repair": 2515,"No need": 729,"Missing": 0},
+    "24": {"Major repair": 22306,"Reconstruction": 57075,"Minor repair": 12997,"No need": 5641,"Missing": 0},
+    "28": {"Major repair": 8228,"Reconstruction": 63597,"Minor repair": 3784,"No need": 1539,"Missing": 0},
+    "29": {"Major repair": 903,"Reconstruction": 11125,"Minor repair": 487,"No need": 129,"Missing": 0},
+    "30": {"Major repair": 14684,"Reconstruction": 62027,"Minor repair": 9049,"No need": 3362,"Missing": 0},
+    "31": {"Major repair": 19815,"Reconstruction": 17781,"Minor repair": 32629,"No need": 20769,"Missing": 0},
+    "36": {"Major repair": 14703,"Reconstruction": 51456,"Minor repair": 9417,"No need": 2498,"Missing": 0}
+}
